@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, User, Code2, Briefcase, GitBranch, Award, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
@@ -15,17 +15,29 @@ const links = [
   { label: "Contact",        href: "#contact",        icon: Mail },
 ];
 
+const slideIn = (delay: number) => ({
+  initial: { opacity: 0, x: 28 },
+  animate: { opacity: 1, x: 0 },
+  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as number[], delay },
+});
+
 export function Nav() {
   const [open, setOpen]                   = useState(false);
   const [scrolled, setScrolled]           = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [ready, setReady]                 = useState(false);
+  const introPlayed                        = useRef(false);
 
-  // 3-second cinematic gate — nav hidden until hero text reveals
+  // Gate — nav appears as hero CTAs animate in (~3.9s mark)
   useEffect(() => {
-    const t = setTimeout(() => setReady(true), 3000);
+    const t = setTimeout(() => setReady(true), 3800);
     return () => clearTimeout(t);
   }, []);
+
+  // Mark intro as played so scroll-swap doesn't replay link animations
+  useEffect(() => {
+    if (ready) introPlayed.current = true;
+  }, [ready]);
 
   // Scroll → pill threshold
   useEffect(() => {
@@ -52,9 +64,19 @@ export function Nav() {
     return () => observer.disconnect();
   }, []);
 
-  const close = () => setOpen(false);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
+  const close = () => setOpen(false);
   const isActive = (href: string) => activeSection === href.slice(1);
+
+  // Only animate from right on the first intro; skip on scroll-swap replays
+  const introProps = (delay: number) =>
+    introPlayed.current ? {} : slideIn(delay);
 
   return (
     <>
@@ -76,6 +98,7 @@ export function Nav() {
             className="p-2 rounded-lg hover:bg-white/10 transition-colors text-white"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
+            aria-expanded={open}
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -88,29 +111,34 @@ export function Nav() {
           {!scrolled ? (
             <motion.header
               key="full-desktop"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
               className="fixed top-0 left-0 right-0 z-50 bg-transparent"
             >
               <div className="max-w-6xl mx-auto px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
-                  <a
+
+                  {/* Profile logo + name — slides from right first */}
+                  <motion.a
                     href="#"
                     className="flex items-center gap-2 font-semibold text-white hover:text-primary transition-colors"
+                    {...introProps(0)}
                   >
                     <div className="w-8 h-8 rounded-full overflow-hidden ring-2 ring-primary/40 shrink-0">
                       <Image src="/photo.jpg" alt={personalInfo.name} width={32} height={32} className="object-cover w-full h-full" />
                     </div>
                     <span className="text-sm">{personalInfo.name}</span>
-                  </a>
+                  </motion.a>
 
+                  {/* Nav links — stagger from right */}
                   <nav className="flex items-center gap-6">
-                    {links.map((link) => (
-                      <a
+                    {links.map((link, i) => (
+                      <motion.a
                         key={link.href}
                         href={link.href}
+                        {...introProps(0.07 + i * 0.07)}
                         className={`relative text-sm transition-colors pb-0.5 ${
                           isActive(link.href)
                             ? "text-white font-medium after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:rounded-full after:bg-primary"
@@ -118,18 +146,20 @@ export function Nav() {
                         }`}
                       >
                         {link.label}
-                      </a>
+                      </motion.a>
                     ))}
                   </nav>
 
-                  {/* Contact icon only — no Hire Me button */}
-                  <a
+                  {/* Contact button — slides in last */}
+                  <motion.a
                     href="#contact"
                     title="Contact"
                     className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                    {...introProps(0.07 + links.length * 0.07)}
                   >
                     <Mail className="size-4" />
-                  </a>
+                  </motion.a>
+
                 </div>
               </div>
             </motion.header>
@@ -143,7 +173,6 @@ export function Nav() {
               className="fixed top-4 left-1/2 -translate-x-1/2 z-50"
             >
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/85 backdrop-blur-md border border-border shadow-2xl">
-                {/* Avatar */}
                 <a href="#" className="shrink-0" title="Back to top">
                   <div className="w-8 h-8 rounded-full overflow-hidden ring-2 ring-primary/40">
                     <Image

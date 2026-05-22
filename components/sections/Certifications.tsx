@@ -1,4 +1,5 @@
-import { Award, Star } from "lucide-react";
+import Image from "next/image";
+import { Star } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { certifications } from "@/lib/data";
 
@@ -11,7 +12,6 @@ const colorMap: Record<string, { bg: string; text: string; border: string; logo:
   gray:   { bg: "bg-muted",            text: "text-muted-foreground",  border: "border-border",          logo: "bg-muted border-border text-muted-foreground" },
 };
 
-/* Logo placeholder — replace the inner content with <Image src="…" /> when ready */
 function LogoPlaceholder({ shortName, className }: { shortName: string; className: string }) {
   return (
     <div
@@ -40,18 +40,26 @@ export function Certifications() {
         {featured && (
           <Reveal delay={0.05}>
             <div className="mb-8 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 p-8 text-white relative overflow-hidden">
-              {/* Decorative circles */}
               <div className="absolute -top-8 -right-8 size-40 rounded-full bg-white/5" />
               <div className="absolute -bottom-12 -left-8 size-56 rounded-full bg-white/5" />
 
               <div className="relative flex flex-col sm:flex-row sm:items-center gap-6">
-                {/* Logo placeholder (featured) */}
                 <div className="shrink-0 flex flex-col items-center gap-2">
-                  <div className="flex items-center justify-center size-20 rounded-2xl bg-white/10 border border-dashed border-white/20">
-                    {/* Swap this div with <Image src="/logos/kubestronaut.png" …/> when ready */}
-                    <Star className="size-10 text-yellow-300 fill-yellow-300" />
-                  </div>
-                  <span className="text-[9px] font-mono text-blue-200/60 tracking-wider">LOGO HERE</span>
+                  {featured.logo ? (
+                    <div className="flex items-center justify-center size-20 rounded-2xl bg-white/10 overflow-hidden">
+                      <Image
+                        src={featured.logo}
+                        alt={featured.name}
+                        width={72}
+                        height={72}
+                        className="object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center size-20 rounded-2xl bg-white/10 border border-dashed border-white/20">
+                      <Star className="size-10 text-yellow-300 fill-yellow-300" />
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -87,11 +95,22 @@ export function Certifications() {
                     key={c.name}
                     className="flex items-center gap-2 px-3 py-2 rounded-xl bg-card border border-border"
                   >
-                    {/* K8s cert logo placeholder */}
-                    <LogoPlaceholder
-                      shortName={c.shortName}
-                      className="w-9 h-9 bg-blue-900/40 border-blue-700/30 text-blue-300"
-                    />
+                    {c.logo ? (
+                      <div className="size-9 shrink-0 flex items-center justify-center rounded-lg overflow-hidden bg-white">
+                        <Image
+                          src={c.logo}
+                          alt={c.shortName}
+                          width={36}
+                          height={36}
+                          className="object-contain"
+                        />
+                      </div>
+                    ) : (
+                      <LogoPlaceholder
+                        shortName={c.shortName}
+                        className="w-9 h-9 bg-blue-900/40 border-blue-700/30 text-blue-300"
+                      />
+                    )}
                     <div>
                       <p className="text-xs font-semibold text-accent-foreground leading-none">
                         {c.name.replace(/Certified /g, "").split(" (")[0]}
@@ -115,11 +134,22 @@ export function Certifications() {
                   <div
                     className={`flex items-start gap-3 p-4 rounded-xl border ${colors.bg} ${colors.border}`}
                   >
-                    {/* Logo placeholder per card */}
-                    <LogoPlaceholder
-                      shortName={cert.shortName}
-                      className={`w-12 h-12 shrink-0 ${colors.logo}`}
-                    />
+                    {cert.logo ? (
+                      <div className="w-12 h-12 shrink-0 flex items-center justify-center rounded-lg overflow-hidden bg-white">
+                        <Image
+                          src={cert.logo}
+                          alt={cert.shortName}
+                          width={48}
+                          height={48}
+                          className="object-contain"
+                        />
+                      </div>
+                    ) : (
+                      <LogoPlaceholder
+                        shortName={cert.shortName}
+                        className={`w-12 h-12 shrink-0 ${colors.logo}`}
+                      />
+                    )}
                     <div className="min-w-0">
                       <p className={`text-sm font-semibold leading-snug ${colors.text}`}>
                         {cert.name}

@@ -94,4 +94,21 @@
     @apply font-sans;
     scroll-behavior: smooth;
   }
+  ::selection {
+    background-color: rgb(59 130 246 / 0.25);
+    color: #E2E8F0;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0B0F1A;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1E2D42;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3B82F6;
+  }
 }

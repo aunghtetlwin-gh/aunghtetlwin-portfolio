@@ -7,11 +7,14 @@ export const personalInfo = {
   location: "Bangkok, Thailand",
   linkedin: "https://www.linkedin.com/in/aung-htet-lwin-671172236/",
   gitlab: "https://gitlab.com/aunghtetlwin.atl",
-  bio: "DevOps and Cloud Engineer with hands-on experience in AWS, Kubernetes, Terraform, Docker, GitLab CI/CD, GitHub Actions, Linux, and cloud-native infrastructure projects. Skilled in infrastructure automation, containerized deployments, CI/CD workflows, observability, and secure cloud operations using CloudWatch, Grafana, HashiCorp Vault, AWS KMS, and Kubernetes RBAC. CNCF Kubestronaut with AWS, Terraform, and Kubernetes certifications, currently pursuing a Master of Computer Science at AIT.",
+  bio: [
+    "CNCF Kubestronaut and DevOps Engineer with hands-on experience building and operating AWS infrastructure using Terraform, Kubernetes (EKS), Docker, GitLab CI/CD, and GitHub Actions. Currently a DevOps & Cloud Engineer Trainee at HelloCloud.io (Singapore), advancing expertise through a Master of Computer Science at AIT, Bangkok.",
+    "Skilled in infrastructure automation, containerized microservice deployments, CI/CD pipelines, observability (CloudWatch, Grafana), and secure cloud operations with HashiCorp Vault, AWS KMS, Kubernetes RBAC, and Istio. One of fewer than 1,000 engineers globally to hold all five core Kubernetes certifications (CKA, CKAD, CKS, KCNA, KCSA).",
+  ],
   highlights: [
     "CNCF Kubestronaut",
     "AIT Master's",
-    "4+ yrs cloud exp",
+    "Hands-on DevOps since 2022",
     "English & Japanese (N3)",
   ],
 };
@@ -28,7 +31,7 @@ export const skills: SkillGroup[] = [
   },
   {
     group: "Container & Orchestration",
-    items: ["Kubernetes", "Docker", "Amazon EKS", "Kubernetes RBAC", "Helm", "Istio"],
+    items: ["Kubernetes", "Docker", "Amazon EKS", "Kubernetes RBAC", "Helm", "Istio", "Kong Gateway", "Consul"],
   },
   {
     group: "Infrastructure as Code",
@@ -54,6 +57,7 @@ export type Experience = {
   location: string;
   period: string;
   current: boolean;
+  isSelfDirected?: boolean;
   bullets: string[];
 };
 
@@ -69,7 +73,7 @@ export const experience: Experience[] = [
       "Built and managed Amazon EKS environments for containerized microservices using Kubernetes Deployments, Services, Helm, and HPA.",
       "Built CI/CD workflows using GitLab CI/CD and GitHub Actions to automate build and deployment processes.",
       "Improved observability using CloudWatch and Grafana for monitoring and troubleshooting of cloud-native environments.",
-      "Supported secure cloud operations through HashiCorp Vault, IAM policies, AWS KMS, Kubernetes RBAC, and Istio service mesh.",
+      "Secured cloud infrastructure using HashiCorp Vault for secrets management, IAM policies, AWS KMS for encryption, Kubernetes RBAC for access control, and Istio service mesh for mTLS between services.",
       "Designed and evaluated centralized and distributed API gateway patterns using Consul and Kong Gateway across three business domains.",
     ],
   },
@@ -86,21 +90,34 @@ export const experience: Experience[] = [
     ],
   },
   {
+    title: "Cloud Self-Study & Certification Preparation",
+    company: "Independent",
+    location: "Remote",
+    period: "Dec 2022 – Nov 2024",
+    current: false,
+    isSelfDirected: true,
+    bullets: [
+      "Self-studied AWS, Kubernetes, and infrastructure-as-code topics to transition from cloud support into a DevOps engineering role.",
+      "Prepared for AWS Solutions Architect Associate (SAA) and initiated the Kubernetes certification track (CKA, CKAD, KCNA, CKS, KCSA).",
+      "Built personal infrastructure projects on GitLab to apply Terraform, container orchestration, and CI/CD pipeline skills hands-on.",
+    ],
+  },
+  {
     title: "Software Developer",
     company: "GIC Myanmar",
     location: "Yangon",
     period: "Jan 2021 – Feb 2022",
     current: false,
     bullets: [
-      "Contributed to software development projects applying SDLC practices to improve code quality and maintainability.",
-      "Developed backend components using Java and PostgreSQL in collaborative environments with version control and code reviews.",
-      "Gained exposure to Ruby on Rails and Angular through internal training and project work.",
+      "Contributed to software development projects using Java and PostgreSQL, applying SDLC practices to improve code quality and maintainability.",
+      "Developed backend components in a multi-developer environment with Git-based version control and peer code reviews.",
     ],
   },
 ];
 
 export type Project = {
   title: string;
+  category: string;
   description: string;
   tech: string[];
   gitlab: string;
@@ -111,8 +128,9 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "HCP Packer AMI Distribution & Cross-Account S3 Logging",
+    category: "Infrastructure Automation",
     description:
-      "Automated multi-region AMI build and distribution using HCP Packer Registry for production and staging image channels across Tokyo and Seoul. Designed a hub-and-spoke AWS architecture with HCP HVN, VPC peering, S3, KMS, CloudWatch, and SSM for secure cross-account logging.",
+      "Solved the challenge of maintaining consistent, auditable machine images across multiple AWS regions by automating AMI builds and distribution with HCP Packer Registry across production and staging channels (Tokyo, Seoul). Designed hub-and-spoke architecture with HCP HVN, VPC peering, S3, KMS, CloudWatch, and SSM for secure cross-account logging.",
     tech: ["HCP Packer", "AWS", "S3", "KMS", "CloudWatch", "SSM", "Terraform"],
     gitlab: "https://gitlab.com/aunghtetlwin.atl/hcp-packer-ami-multi-build",
     gradient: "from-orange-950/60 to-amber-950/40",
@@ -120,8 +138,9 @@ export const projects: Project[] = [
   },
   {
     title: "Multi-Domain API Gateway Architecture on Kubernetes",
+    category: "Service Mesh & API Gateway",
     description:
-      "Designed centralized and distributed API gateway patterns using Consul API Gateway and Kong Gateway across three business domains. Implemented multi-service traffic flow and domain-based gateway routing on Kubernetes.",
+      "Evaluated centralized vs. distributed API gateway architectures to determine the most scalable traffic routing model for a multi-domain microservices environment. Implemented and compared both patterns using Consul API Gateway and Kong Gateway on Kubernetes across three isolated business domains.",
     tech: ["Kubernetes", "Kong Gateway", "Consul", "Terraform", "Helm"],
     gitlab: "https://gitlab.com/aunghtetlwin.atl/kong-distributed-api-gateway",
     gradient: "from-blue-950/60 to-indigo-950/40",
@@ -129,8 +148,9 @@ export const projects: Project[] = [
   },
   {
     title: "EKS Cluster with Bookinfo Microservice Deployment",
+    category: "Kubernetes Infrastructure",
     description:
-      "Built an AWS EKS environment with Terraform including VPC networking, managed node groups, IAM roles, and kubeconfig automation. Implemented Kubernetes RBAC and deployed the Bookinfo microservices app with external LoadBalancer access.",
+      "Provisioned a production-grade Amazon EKS cluster from scratch using Terraform, covering custom VPC design, managed node groups, IAM roles, and automated kubeconfig. Applied Kubernetes RBAC for least-privilege access control and validated the environment with a full Bookinfo microservices deployment exposed via external LoadBalancer.",
     tech: ["Amazon EKS", "Terraform", "Kubernetes", "RBAC", "Helm", "IAM"],
     gitlab: "https://gitlab.com/aunghtetlwin.atl/eks-cluster-with-terraform",
     gradient: "from-purple-950/60 to-violet-950/40",
@@ -145,6 +165,7 @@ export type Certification = {
   date: string;
   featured?: boolean;
   color: string;
+  logo?: string;
 };
 
 export const certifications: Certification[] = [
@@ -155,6 +176,7 @@ export const certifications: Certification[] = [
     date: "Feb 2025",
     featured: true,
     color: "blue",
+    logo: "/logos/kubestronaut.png",
   },
   {
     name: "Certified Kubernetes Administrator (CKA)",
@@ -162,6 +184,7 @@ export const certifications: Certification[] = [
     issuer: "Linux Foundation",
     date: "Sept 2025",
     color: "blue",
+    logo: "/logos/CKA.png",
   },
   {
     name: "Certified Kubernetes Application Developer (CKAD)",
@@ -169,6 +192,7 @@ export const certifications: Certification[] = [
     issuer: "Linux Foundation",
     date: "Feb 2025",
     color: "blue",
+    logo: "/logos/CKAD.png",
   },
   {
     name: "Certified Kubernetes and Cloud Native Associate (KCNA)",
@@ -176,6 +200,7 @@ export const certifications: Certification[] = [
     issuer: "Linux Foundation",
     date: "Feb 2025",
     color: "blue",
+    logo: "/logos/KCNA.png",
   },
   {
     name: "Certified Kubernetes Security Specialist (CKS)",
@@ -183,6 +208,7 @@ export const certifications: Certification[] = [
     issuer: "Linux Foundation",
     date: "Jan 2026",
     color: "blue",
+    logo: "/logos/CKS.png",
   },
   {
     name: "Certified Kubernetes Security Associate (KCSA)",
@@ -190,6 +216,7 @@ export const certifications: Certification[] = [
     issuer: "Linux Foundation",
     date: "Jan 2026",
     color: "blue",
+    logo: "/logos/KCSA.png",
   },
   {
     name: "AWS Certified Solutions Architect – Associate",
@@ -197,6 +224,7 @@ export const certifications: Certification[] = [
     issuer: "Amazon Web Services",
     date: "Dec 2024",
     color: "orange",
+    logo: "/logos/AWSSAA.png",
   },
   {
     name: "HashiCorp Certified: Terraform Associate",
@@ -218,6 +246,7 @@ export const certifications: Certification[] = [
     issuer: "Japan Educational Exchanges and Services",
     date: "Jan 2022",
     color: "red",
+    logo: "/logos/jlptn3.png",
   },
   {
     name: "IT Passport (IP) Exam — ITPEC",
@@ -251,7 +280,13 @@ export const roadmap: RoadmapMilestone[] = [
     status: "done",
   },
   {
-    year: "2022",
+    year: "Jan 2021 – Feb 2022",
+    title: "Software Developer",
+    subtitle: "GIC Myanmar, Yangon — Java · PostgreSQL · Ruby on Rails",
+    status: "done",
+  },
+  {
+    year: "Feb 2022 – Nov 2022",
     title: "Cloud Support Engineer",
     subtitle: "KBTC Group of Companies — Azure administration & team training",
     status: "done",

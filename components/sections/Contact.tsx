@@ -16,6 +16,12 @@ const contactItems = [
     href: `tel:${personalInfo.phone}`,
   },
   {
+    icon: MapPin,
+    label: "Location",
+    value: personalInfo.location,
+    href: null,
+  },
+  {
     icon: Globe,
     label: "LinkedIn",
     value: "aung-htet-lwin",
@@ -26,12 +32,6 @@ const contactItems = [
     label: "GitLab",
     value: "aunghtetlwin.atl",
     href: personalInfo.gitlab,
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: personalInfo.location,
-    href: null,
   },
 ];
 
@@ -44,8 +44,8 @@ export function Contact() {
             Get in Touch
           </h2>
           <div className="w-12 h-1 bg-primary rounded-full mb-4" />
-          <p className="text-muted-foreground text-base mb-10 max-w-md">
-            Open to DevOps, Cloud, and Infrastructure Engineering roles. Let&apos;s connect.
+          <p className="text-muted-foreground text-base mb-10 max-w-lg">
+            Currently open to DevOps, Cloud, and Platform Engineering roles — remote or based in Thailand / Southeast Asia.
           </p>
         </Reveal>
 
@@ -91,9 +91,9 @@ export function Contact() {
         <Reveal delay={0.25}>
           <a
             href={`mailto:${personalInfo.email}`}
-            className="inline-flex items-center gap-2 h-12 px-8 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center gap-2 h-14 px-10 rounded-xl bg-primary text-primary-foreground text-base font-semibold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
           >
-            <Mail className="size-4" />
+            <Mail className="size-5" />
             Send an Email
           </a>
         </Reveal>

@@ -1,5 +1,13 @@
+import { Star, GraduationCap, Server, Globe } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { personalInfo } from "@/lib/data";
+
+const highlightIcons: Record<string, React.ReactNode> = {
+  "CNCF Kubestronaut": <Star className="size-4 text-yellow-400 shrink-0" />,
+  "AIT Master's": <GraduationCap className="size-4 text-accent-foreground shrink-0" />,
+  "Hands-on DevOps since 2022": <Server className="size-4 text-accent-foreground shrink-0" />,
+  "English & Japanese (N3)": <Globe className="size-4 text-accent-foreground shrink-0" />,
+};
 
 export function About() {
   return (
@@ -15,9 +23,13 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Bio */}
           <Reveal className="lg:col-span-2" delay={0.05}>
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              {personalInfo.bio}
-            </p>
+            <div className="flex flex-col gap-4">
+              {personalInfo.bio.map((para, i) => (
+                <p key={i} className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                  {para}
+                </p>
+              ))}
+            </div>
           </Reveal>
 
           {/* Highlight chips */}
@@ -31,7 +43,7 @@ export function About() {
                   key={item}
                   className="flex items-center gap-3 px-4 py-3 rounded-xl bg-muted border border-border"
                 >
-                  <span className="size-2 rounded-full bg-primary shrink-0" />
+                  {highlightIcons[item] ?? <span className="size-2 rounded-full bg-primary shrink-0" />}
                   <span className="text-sm font-medium text-foreground">{item}</span>
                 </div>
               ))}

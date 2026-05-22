@@ -13,8 +13,8 @@ export function Experience() {
         </Reveal>
 
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-4 top-2 bottom-2 w-px bg-border hidden sm:block" />
+          {/* Vertical line — gradient from primary to transparent */}
+          <div className="absolute left-4 top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-border to-transparent hidden sm:block" />
 
           <div className="flex flex-col gap-10">
             {experience.map((job, i) => (
@@ -24,25 +24,40 @@ export function Experience() {
                   <div
                     className={`absolute left-0 top-1.5 size-8 rounded-full border-2 hidden sm:flex items-center justify-center ${
                       job.current
-                        ? "border-primary bg-primary"
+                        ? "border-primary bg-primary ring-2 ring-primary/30 ring-offset-2 ring-offset-background"
+                        : job.isSelfDirected
+                        ? "border-dashed border-border/60 bg-muted/40"
                         : "border-border bg-card"
                     }`}
                   >
                     <span
                       className={`size-2.5 rounded-full ${
-                        job.current ? "bg-primary-foreground" : "bg-muted-foreground/40"
+                        job.current
+                          ? "bg-primary-foreground"
+                          : job.isSelfDirected
+                          ? "bg-border/60"
+                          : "bg-border"
                       }`}
                     />
                   </div>
 
-                  <div className="bg-muted/40 rounded-2xl border border-border p-6">
+                  <div className={`rounded-2xl border p-6 transition-colors ${
+                    job.isSelfDirected
+                      ? "bg-muted/20 border-dashed border-border/60 hover:bg-muted/30"
+                      : "bg-muted/40 border-border hover:bg-muted/60 hover:border-border/80"
+                  }`}>
                     {/* Header */}
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                       <div>
-                        <h3 className="text-base font-semibold text-foreground">
+                        {job.isSelfDirected && (
+                          <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 mb-1">
+                            Self-directed
+                          </p>
+                        )}
+                        <h3 className={`text-base font-bold ${job.isSelfDirected ? "text-foreground/70" : "text-foreground"}`}>
                           {job.title}
                         </h3>
-                        <p className="text-sm text-muted-foreground mt-0.5">
+                        <p className={`text-sm font-semibold mt-0.5 ${job.isSelfDirected ? "text-muted-foreground/60" : "text-muted-foreground"}`}>
                           {job.company} · {job.location}
                         </p>
                       </div>
@@ -61,8 +76,8 @@ export function Experience() {
                     {/* Bullets */}
                     <ul className="flex flex-col gap-2">
                       {job.bullets.map((bullet, j) => (
-                        <li key={j} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
-                          <span className="mt-2 size-1.5 rounded-full bg-primary/40 shrink-0" />
+                        <li key={j} className={`flex gap-3 text-sm leading-relaxed ${job.isSelfDirected ? "text-muted-foreground/60" : "text-muted-foreground"}`}>
+                          <span className={`mt-2 size-1.5 rounded-full shrink-0 ${job.isSelfDirected ? "bg-border/60" : "bg-primary/40"}`} />
                           {bullet}
                         </li>
                       ))}
