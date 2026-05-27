@@ -232,6 +232,7 @@ export const certifications: Certification[] = [
     issuer: "HashiCorp",
     date: "Dec 2025",
     color: "purple",
+    logo: "/logos/terraform.jpeg",
   },
   {
     name: "Microsoft Azure Fundamentals (AZ-900)",
@@ -239,6 +240,7 @@ export const certifications: Certification[] = [
     issuer: "Microsoft",
     date: "Apr 2022",
     color: "sky",
+    logo: "/logos/azure.png",
   },
   {
     name: "Japanese Language Proficiency Test (JLPT N3)",
