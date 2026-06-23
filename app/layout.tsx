@@ -13,7 +13,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   // TODO: update metadataBase to your final deployment URL before going live
-  metadataBase: new URL("https://aunghtetlwin.dev"),
+  metadataBase: new URL("https://aunghtetlwin.com"),
   title: "Aung Htet Lwin — DevOps & Cloud Engineer",
   description:
     "Portfolio of Aung Htet Lwin, a CNCF Kubestronaut and DevOps/Cloud Engineer specialising in AWS, Kubernetes, Terraform, and cloud-native infrastructure.",
