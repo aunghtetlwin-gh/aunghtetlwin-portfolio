@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: "Aung Htet Lwin",
-  role: "DevOps / Cloud Engineer",
+  role: "DevOps & Cloud Engineer",
   tagline: "Infrastructure automation · Kubernetes · Cloud-native systems",
   email: "aunghtetlwin.atl@gmail.com",
   phone: "+66828386852",
@@ -9,13 +9,13 @@ export const personalInfo = {
   gitlab: "https://gitlab.com/aunghtetlwin.atl",
   github: "https://github.com/aunghtetlwin-gh",
   bio: [
-    "CNCF Kubestronaut and DevOps Engineer with hands-on experience building and operating AWS infrastructure using Terraform, Kubernetes (EKS), Docker, GitLab CI/CD, and GitHub Actions. Currently a DevOps & Cloud Engineer Trainee at HelloCloud.io (Singapore), advancing expertise through a Master of Computer Science at AIT, Bangkok.",
-    "Skilled in infrastructure automation, containerized microservice deployments, CI/CD pipelines, observability (CloudWatch, Grafana), and secure cloud operations with HashiCorp Vault, AWS KMS, Kubernetes RBAC, and Istio. One of fewer than 1,000 engineers globally to hold all five core Kubernetes certifications (CKA, CKAD, CKS, KCNA, KCSA).",
+    "DevOps & Cloud Engineer and CNCF Kubestronaut with 4+ years of combined IT experience across software development, cloud support, and hands-on cloud-native infrastructure work. Experienced in designing and automating scalable, secure, and reliable AWS infrastructure using Kubernetes, Terraform, Docker, CI/CD, and GitOps practices.",
+    "Hands-on experience with Amazon EKS, Terraform modules, GitHub Actions, GitLab CI/CD, Argo CD, Kustomize, ALB Ingress, Route 53, ACM, HashiCorp Vault, AWS KMS, Kubernetes RBAC, Istio, Prometheus, Grafana, CloudWatch, Bash, and Python. Passionate about building reliable cloud infrastructure for modern distributed systems.",
   ],
   highlights: [
     "CNCF Kubestronaut",
     "AIT Master's",
-    "Hands-on DevOps since 2022",
+    "4+ years IT experience",
     "English & Japanese (N3)",
   ],
 };
@@ -32,19 +32,19 @@ export const skills: SkillGroup[] = [
   },
   {
     group: "Container & Orchestration",
-    items: ["Kubernetes", "Docker", "Amazon EKS", "Kubernetes RBAC", "Helm", "Istio", "Kong Gateway", "Consul"],
+    items: ["Kubernetes", "Docker", "Amazon EKS", "Kubernetes RBAC", "Helm", "ALB Ingress", "Istio"],
   },
   {
     group: "Infrastructure as Code",
-    items: ["Terraform", "AWS CloudFormation", "HCP Packer"],
+    items: ["Terraform", "Terraform Modules", "AWS CloudFormation", "HCP Packer"],
   },
   {
     group: "CI/CD",
-    items: ["GitLab CI/CD", "GitHub Actions"],
+    items: ["GitLab CI/CD", "GitHub Actions", "Argo CD", "Kustomize"],
   },
   {
     group: "Observability & Security",
-    items: ["CloudWatch", "Grafana", "HashiCorp Vault", "AWS KMS"],
+    items: ["CloudWatch", "Prometheus", "Grafana", "HashiCorp Vault", "AWS KMS"],
   },
   {
     group: "Languages & OS",
@@ -64,18 +64,19 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    title: "DevOps & Cloud Engineer Trainee",
+    title: "DevOps & Cloud Engineer",
     company: "HelloCloud.io",
     location: "Singapore",
-    period: "Dec 2024 – Present",
+    period: "Dec 2023 – Present",
     current: true,
     bullets: [
-      "Designed and provisioned AWS infrastructure using Terraform (VPC, subnets, IAM, EC2, load balancers, CloudWatch, SSM, S3) to support repeatable cloud environments.",
-      "Built and managed Amazon EKS environments for containerized microservices using Kubernetes Deployments, Services, Helm, and HPA.",
-      "Built CI/CD workflows using GitLab CI/CD and GitHub Actions to automate build and deployment processes.",
-      "Improved observability using CloudWatch and Grafana for monitoring and troubleshooting of cloud-native environments.",
-      "Secured cloud infrastructure using HashiCorp Vault for secrets management, IAM policies, AWS KMS for encryption, Kubernetes RBAC for access control, and Istio service mesh for mTLS between services.",
-      "Designed and evaluated centralized and distributed API gateway patterns using Consul and Kong Gateway across three business domains.",
+      "Designed and provisioned AWS infrastructure using Terraform, including VPC, subnets, IAM, EC2, ECS, load balancers, CloudWatch, SSM, and S3 to support repeatable cloud environments.",
+      "Built and managed Amazon EKS environments for containerized microservices using Kubernetes Deployments, Services, Helm, HPA, ALB Ingress, and Kubernetes RBAC.",
+      "Implemented reusable Infrastructure as Code using Terraform modules, workspaces, and remote state management to improve consistency and automation of infrastructure provisioning.",
+      "Implemented CI/CD and GitOps workflows using GitLab CI/CD, GitHub Actions, Argo CD, and Kustomize to improve deployment automation and environment consistency.",
+      "Improved secure operations using HashiCorp Vault, IAM policies, AWS KMS, Kubernetes RBAC, and Istio service mesh with sidecar proxies for traffic management and service observability.",
+      "Implemented monitoring and observability using CloudWatch, Prometheus, and Grafana to enhance system visibility and support incident response workflows.",
+      "Automated operational tasks using Bash and Python for Linux administration, bastion host setup, secure networking support, and repeatable infrastructure operations.",
     ],
   },
   {
@@ -87,20 +88,8 @@ export const experience: Experience[] = [
     bullets: [
       "Provisioned and configured Microsoft Azure cloud accounts including user setup, access management, and permission configuration.",
       "Administered Azure Active Directory to manage identity and access control across organizational resources.",
+      "Managed Microsoft SharePoint administration and configuration, providing technical support to users.",
       "Delivered Azure cloud fundamentals training and created technical documentation to support knowledge transfer and AZ-900 preparation.",
-    ],
-  },
-  {
-    title: "Cloud Self-Study & Certification Preparation",
-    company: "Independent",
-    location: "Remote",
-    period: "Dec 2022 – Nov 2024",
-    current: false,
-    isSelfDirected: true,
-    bullets: [
-      "Self-studied AWS, Kubernetes, and infrastructure-as-code topics to transition from cloud support into a DevOps engineering role.",
-      "Prepared for AWS Solutions Architect Associate (SAA) and initiated the Kubernetes certification track (CKA, CKAD, KCNA, CKS, KCSA).",
-      "Built personal infrastructure projects on GitLab to apply Terraform, container orchestration, and CI/CD pipeline skills hands-on.",
     ],
   },
   {
@@ -110,8 +99,10 @@ export const experience: Experience[] = [
     period: "Jan 2021 – Feb 2022",
     current: false,
     bullets: [
-      "Contributed to software development projects using Java and PostgreSQL, applying SDLC practices to improve code quality and maintainability.",
-      "Developed backend components in a multi-developer environment with Git-based version control and peer code reviews.",
+      "Participated in software development projects as a junior developer, applying SDLC best practices to improve code quality and maintainability.",
+      "Developed backend components using Java and PostgreSQL in collaborative environments with code reviews and version control.",
+      "Collaborated with cross-functional team members to troubleshoot technical issues and document solutions for knowledge sharing.",
+      "Gained exposure to modern web frameworks including Ruby on Rails and Angular through internal training and project work.",
     ],
   },
 ];
@@ -203,7 +194,7 @@ export const certifications: Certification[] = [
     name: "Certified Kubernetes Application Developer (CKAD)",
     shortName: "CKAD",
     issuer: "Linux Foundation",
-    date: "Feb 2025",
+    date: "Feb 2026",
     color: "blue",
     logo: "/logos/CKAD.png",
   },
@@ -211,7 +202,7 @@ export const certifications: Certification[] = [
     name: "Certified Kubernetes and Cloud Native Associate (KCNA)",
     shortName: "KCNA",
     issuer: "Linux Foundation",
-    date: "Feb 2025",
+    date: "Feb 2026",
     color: "blue",
     logo: "/logos/KCNA.png",
   },
@@ -307,8 +298,8 @@ export const roadmap: RoadmapMilestone[] = [
     status: "done",
   },
   {
-    year: "Dec 2024",
-    title: "DevOps & Cloud Engineer Trainee",
+    year: "Dec 2023",
+    title: "DevOps & Cloud Engineer",
     subtitle: "HelloCloud.io, Singapore — AWS · Kubernetes · Terraform · CI/CD",
     status: "done",
   },

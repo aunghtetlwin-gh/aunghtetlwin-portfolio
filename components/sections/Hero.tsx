@@ -5,6 +5,18 @@ import { MapPin, Download, Mail } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { personalInfo } from "@/lib/data";
 
+const techLogos = [
+  { name: "AWS", src: "/logos/tech/aws.png" },
+  { name: "Kubernetes", src: "/logos/CKA.png" },
+  { name: "Docker", src: "/logos/tech/docker.png" },
+  { name: "Terraform", src: "/logos/tech/terraform.png" },
+  { name: "Linux", src: "/logos/tech/linux.jpeg" },
+  { name: "GitHub", src: "/logos/tech/github.png" },
+  { name: "GitLab", src: "/logos/tech/gitlab.png" },
+  { name: "Istio", src: "/logos/tech/istio.png" },
+  { name: "Vault", src: "/logos/tech/vault.png" },
+];
+
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
@@ -34,6 +46,29 @@ export function Hero() {
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/55" />
+
+      <motion.div
+        className="pointer-events-none absolute right-8 top-1/2 z-10 hidden w-[360px] -translate-y-1/2 grid-cols-3 gap-3 xl:grid 2xl:right-24"
+        initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 28 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.9, ease: "easeOut", delay: 3.1 }}
+        aria-label="Core technology logos"
+      >
+        {techLogos.map((logo) => (
+          <div
+            key={logo.name}
+            className="flex h-20 items-center justify-center rounded-xl border border-white/10 bg-white/90 p-3 shadow-2xl shadow-black/25 backdrop-blur-sm"
+          >
+            <Image
+              src={logo.src}
+              alt={logo.name}
+              width={96}
+              height={56}
+              className="max-h-12 w-auto object-contain"
+            />
+          </div>
+        ))}
+      </motion.div>
 
       {/* Content — sequential reveal via variants */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
