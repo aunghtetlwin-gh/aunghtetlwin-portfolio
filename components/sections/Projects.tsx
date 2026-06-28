@@ -5,18 +5,18 @@ import { projects } from "@/lib/data";
 export function Projects() {
   return (
     <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <Reveal>
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
             Projects
           </h2>
           <div className="w-12 h-1 bg-primary rounded-full mb-4" />
           <p className="text-sm text-muted-foreground mb-10">
-            Hands-on cloud infrastructure projects — source code publicly available on GitLab.
+            Hands-on cloud infrastructure projects — source code publicly available.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {projects.map((project, i) => (
             <Reveal key={project.title} delay={i * 0.07}>
               <div
@@ -55,7 +55,7 @@ export function Projects() {
                     className={`inline-flex items-center gap-1.5 text-sm font-medium ${project.accentColor} group-hover:underline`}
                   >
                     <ExternalLink className="size-3.5" />
-                    View on GitLab
+                    View on {project.sourceLabel ?? "GitLab"}
                   </a>
                 </div>
               </div>

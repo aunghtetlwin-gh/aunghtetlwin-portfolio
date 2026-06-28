@@ -121,11 +121,23 @@ export type Project = {
   description: string;
   tech: string[];
   gitlab: string;
+  sourceLabel?: string;
   gradient: string;
   accentColor: string;
 };
 
 export const projects: Project[] = [
+  {
+    title: "Solar System CI/CD on AWS EKS",
+    category: "Kubernetes GitOps Platform",
+    description:
+      "Built an end-to-end DevOps platform for a Node.js and MongoDB Solar System app on Amazon EKS. Provisioned AWS infrastructure with Terraform modules, including VPC, EKS, IAM/OIDC, Route 53, and ACM. Implemented GitHub Actions CI/CD to test, build, smoke-test, and push Docker images to Docker Hub. Used Argo CD for GitOps with automatic dev deployment and manual production promotion. Exposed the app through ALB Ingress with Cloudflare DNS delegation and added observability using Prometheus and Grafana.",
+    tech: ["AWS EKS", "Terraform", "Kubernetes", "Docker", "GitHub Actions", "Argo CD", "Route 53", "ACM", "Prometheus", "Grafana"],
+    gitlab: "https://github.com/aunghtetlwin-gh/Solar-system-cicd-eks",
+    sourceLabel: "GitHub",
+    gradient: "from-emerald-950/60 to-teal-950/40",
+    accentColor: "text-emerald-400",
+  },
   {
     title: "HCP Packer AMI Distribution & Cross-Account S3 Logging",
     category: "Infrastructure Automation",

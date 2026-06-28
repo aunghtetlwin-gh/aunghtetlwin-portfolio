@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, User, Code2, Briefcase, GitBranch, Award, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
@@ -26,18 +26,13 @@ export function Nav() {
   const [scrolled, setScrolled]           = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [ready, setReady]                 = useState(false);
-  const introPlayed                        = useRef(false);
+  const [introPlayed, setIntroPlayed]     = useState(false);
 
   // Gate — nav appears as hero CTAs animate in (~3.9s mark)
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 3800);
     return () => clearTimeout(t);
   }, []);
-
-  // Mark intro as played so scroll-swap doesn't replay link animations
-  useEffect(() => {
-    if (ready) introPlayed.current = true;
-  }, [ready]);
 
   // Scroll → pill threshold
   useEffect(() => {
@@ -76,7 +71,7 @@ export function Nav() {
 
   // Only animate from right on the first intro; skip on scroll-swap replays
   const introProps = (delay: number) =>
-    introPlayed.current ? {} : slideIn(delay);
+    introPlayed ? {} : slideIn(delay);
 
   return (
     <>
@@ -156,6 +151,7 @@ export function Nav() {
                     title="Contact"
                     className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                     {...introProps(0.07 + links.length * 0.07)}
+                    onAnimationComplete={() => setIntroPlayed(true)}
                   >
                     <Mail className="size-4" />
                   </motion.a>
