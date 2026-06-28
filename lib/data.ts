@@ -72,9 +72,9 @@ export const experience: Experience[] = [
     bullets: [
       "Designed and provisioned AWS infrastructure using Terraform, including VPC, subnets, IAM, EC2, ECS, load balancers, CloudWatch, SSM, and S3 to support repeatable cloud environments.",
       "Built and managed Amazon EKS environments for containerized microservices using Kubernetes Deployments, Services, Helm, HPA, ALB Ingress, and Kubernetes RBAC.",
-      "Implemented reusable Infrastructure as Code using Terraform modules, workspaces, and remote state management to improve consistency and automation of infrastructure provisioning.",
+      "Developed reusable Infrastructure as Code using Terraform modules, workspaces, and remote state management to improve consistency and automation of infrastructure provisioning.",
       "Implemented CI/CD and GitOps workflows using GitLab CI/CD, GitHub Actions, Argo CD, and Kustomize to improve deployment automation and environment consistency.",
-      "Improved secure operations using HashiCorp Vault, IAM policies, AWS KMS, Kubernetes RBAC, and Istio service mesh with sidecar proxies for traffic management and service observability.",
+      "Strengthened secure operations using HashiCorp Vault, IAM policies, AWS KMS, Kubernetes RBAC, and Istio service mesh with sidecar proxies for traffic management and service observability.",
       "Implemented monitoring and observability using CloudWatch, Prometheus, and Grafana to enhance system visibility and support incident response workflows.",
       "Automated operational tasks using Bash and Python for Linux administration, bastion host setup, secure networking support, and repeatable infrastructure operations.",
     ],
