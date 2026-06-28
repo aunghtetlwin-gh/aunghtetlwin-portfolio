@@ -7,6 +7,7 @@ export const personalInfo = {
   location: "Bangkok, Thailand",
   linkedin: "https://www.linkedin.com/in/aung-htet-lwin-671172236/",
   gitlab: "https://gitlab.com/aunghtetlwin.atl",
+  github: "https://github.com/aunghtetlwin-gh",
   bio: [
     "CNCF Kubestronaut and DevOps Engineer with hands-on experience building and operating AWS infrastructure using Terraform, Kubernetes (EKS), Docker, GitLab CI/CD, and GitHub Actions. Currently a DevOps & Cloud Engineer Trainee at HelloCloud.io (Singapore), advancing expertise through a Master of Computer Science at AIT, Bangkok.",
     "Skilled in infrastructure automation, containerized microservice deployments, CI/CD pipelines, observability (CloudWatch, Grafana), and secure cloud operations with HashiCorp Vault, AWS KMS, Kubernetes RBAC, and Istio. One of fewer than 1,000 engineers globally to hold all five core Kubernetes certifications (CKA, CKAD, CKS, KCNA, KCSA).",
@@ -185,7 +186,7 @@ export const certifications: Certification[] = [
     name: "CNCF Kubestronaut",
     shortName: "K8s★",
     issuer: "Linux Foundation",
-    date: "Feb 2025",
+    date: "Feb 2026",
     featured: true,
     color: "blue",
     logo: "/logos/kubestronaut.png",
@@ -324,7 +325,7 @@ export const roadmap: RoadmapMilestone[] = [
     status: "current",
   },
   {
-    year: "Feb 2025",
+    year: "Feb 2026",
     title: "CNCF Kubestronaut",
     subtitle: "All 5 Kubernetes certifications — fewer than 1,000 holders globally",
     status: "current",
@@ -332,8 +333,8 @@ export const roadmap: RoadmapMilestone[] = [
   },
   {
     year: "2026",
-    title: "Senior Cloud / Platform Engineer",
-    subtitle: "Target: full-time SRE or Platform Engineering role",
+    title: "DevOps / Cloud / Platform Engineer",
+    subtitle: "Target: full-time DevOps, Cloud, SRE, or Platform Engineering role",
     status: "future",
   },
   {

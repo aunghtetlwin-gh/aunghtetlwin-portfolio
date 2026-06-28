@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Globe, GitMerge } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, GitMerge, GitBranch } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { personalInfo } from "@/lib/data";
 
@@ -32,6 +32,12 @@ const contactItems = [
     label: "GitLab",
     value: "aunghtetlwin.atl",
     href: personalInfo.gitlab,
+  },
+  {
+    icon: GitBranch,
+    label: "GitHub",
+    value: "aunghtetlwin-gh",
+    href: personalInfo.github,
   },
 ];
 
